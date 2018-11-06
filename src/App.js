@@ -4,6 +4,7 @@ import './App.css';
 import Money from './Money/Money';
 import Fields from './Fields/Fields';
 import Actions from './Actions/Actions';
+import Filters from './Filters/Filters'
 
 class App extends Component {
 
@@ -11,15 +12,18 @@ class App extends Component {
     total: 0,
     plus: true,
     div: false,
-    actions: []
+    actions: [],
+    filteredActions: [],
+    filter: 1
   }
+
 
   componentDidMount() {
     const savedActions = JSON.parse(localStorage.getItem('actions'));
     const total = localStorage.getItem('total')
 
     if(savedActions) {
-      this.setState({ actions: savedActions, total })
+      this.setState({ filteredActions: savedActions, actions: savedActions, total })
     }
 
   }
@@ -34,6 +38,7 @@ class App extends Component {
     const actions = [newAction, ...this.state.actions];
     this.setState({
       actions,
+      filteredActions: actions,
       total: this.sum(actions)
     });
   }
@@ -59,6 +64,25 @@ class App extends Component {
     localStorage.setItem('total', total)
   }
 
+  onlyIncomeHandler = () => {
+    let filteredActions = this.state.actions.filter(action => {
+      return action.income === true;
+    })
+    this.setState({filteredActions: filteredActions, filter: 2})
+  }
+
+  onlyCostHandler = () => {
+    let filteredActions = this.state.actions.filter(action => {
+      return action.income === false;
+    })
+    this.setState({filteredActions: filteredActions, filter: 3})
+  }
+
+  allHandler = () => {
+    const actions = this.state.actions;
+    this.setState({filteredActions: actions, filter: 1})
+  }
+
 
   render() {
     return (
@@ -67,12 +91,18 @@ class App extends Component {
           onHandlePlus={this.handlePlus}
           onHandleDiv={this.handleDiv}
           total={this.state.total} />
+        <Filters 
+          onOnlyIncomeHandler={this.onlyIncomeHandler}
+          onOnlyCostHandler={this.onlyCostHandler}
+          onAllHandler={this.allHandler}
+          filter={this.state.filter}/>
         <Fields
           onActionAdd={this.handleAdd}
           plus={this.state.plus}
           div={this.state.div} />
         <Actions
-          actions={this.state.actions} />
+          actions={this.state.actions}
+          filteredActions={this.state.filteredActions} />
       </div>
     );
   }

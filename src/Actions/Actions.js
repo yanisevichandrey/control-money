@@ -6,7 +6,7 @@ const actions = (props) => {
     return(
         <div>
             {
-                props.actions.map(action => {
+                props.filteredActions.map(action => {
                    return <Action
                     key={action.id}
                     name={action.name}

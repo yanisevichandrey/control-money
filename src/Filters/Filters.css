@@ -1,0 +1,14 @@
+.Filters {
+    width: 100%;
+}
+
+.Filters button {
+    width: 33.33%;
+    height: 30px;
+    border: none;
+    cursor: pointer;
+    background-color: rgb(45, 56, 86);
+    color: #fff;
+    font-size: 15px;
+    outline: none;
+}
