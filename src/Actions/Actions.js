@@ -11,7 +11,8 @@ const actions = (props) => {
                     key={action.id}
                     name={action.name}
                     income={action.income}
-                    number={action.number}/>
+                    number={action.number}
+                    date={action.date}/>
                 })
             }
         </div>

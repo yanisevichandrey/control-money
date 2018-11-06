@@ -35,3 +35,14 @@
 .red {
     color: rgb(236, 20, 13);
 }
+
+.nameDateCol {
+    display: flex;
+    flex-direction: column;
+}
+
+.action_date {
+    padding-left: 20px;
+    font-size: 14px;
+    color: grey;
+}
