@@ -39,7 +39,7 @@ class App extends Component {
     this.setState({
       actions,
       filteredActions: actions,
-      total: this.sum(actions)
+      total: this.sum(actions),
     });
   }
 

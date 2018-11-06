@@ -52,6 +52,11 @@ class Fields extends Component {
         };
 
         this.props.onActionAdd(newAction);
+        this.resetStateHandler()
+    }
+
+    resetStateHandler = () => {
+        this.setState({fieldSum: '', fieldName: ''})
     }
 
     render() {
